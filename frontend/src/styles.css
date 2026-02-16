@@ -1,0 +1,394 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nav a:hover {
+  color: #0ea5e9;
+}
+
+.gallery-container {
+  min-height: calc(100vh - 120px);
+  padding: 2rem;
+  position: relative;
+}
+
+.masonry-gallery {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.video-card {
+  position: absolute;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.video-card:hover {
+  transform: scale(1.05) translateZ(0);
+  z-index: 50;
+  border-color: rgba(14, 165, 233, 0.4);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.video-card.active {
+  transform: scale(1.15) translateZ(0);
+  z-index: 100;
+  border: 2px solid #0ea5e9;
+  box-shadow: 0 12px 50px rgba(14, 165, 233, 0.6);
+}
+
+.video-card.active .video-info {
+  opacity: 1;
+}
+
+.video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.video-card:hover .video-info {
+  opacity: 1;
+}
+
+.video-description {
+  color: #fff;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.copyright {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.8);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #888;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+h1 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.upload-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: #111;
+  border-radius: 12px;
+}
+
+.upload-form input[type="file"] {
+  flex: 1;
+}
+
+.upload-form input[type="text"] {
+  flex: 2;
+  padding: 0.75rem;
+  background: #222;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.upload-form button {
+  padding: 0.75rem 2rem;
+  background: #0ea5e9;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.upload-form button:hover:not(:disabled) {
+  background: #0284c7;
+}
+
+.upload-form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.admin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: #111;
+  border-radius: 12px;
+}
+
+.admin-preview {
+  width: 200px;
+  height: 112px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.admin-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.admin-details input {
+  padding: 0.5rem;
+  background: #222;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.admin-details button {
+  align-self: flex-start;
+  padding: 0.5rem 1rem;
+  background: #dc2626;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.admin-details button:hover {
+  background: #b91c1c;
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+  
+  .upload-form {
+    flex-direction: column;
+  }
+  
+  .admin-item {
+    flex-direction: column;
+  }
+  
+  .admin-preview {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+.upload-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: #111;
+  border-radius: 12px;
+}
+
+.upload-form input[type="file"] {
+  flex: 1;
+}
+
+.upload-form input[type="text"] {
+  flex: 2;
+  padding: 0.75rem;
+  background: #222;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.upload-form button {
+  padding: 0.75rem 2rem;
+  background: #0ea5e9;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.upload-form button:hover:not(:disabled) {
+  background: #0284c7;
+}
+
+.upload-form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.admin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: #111;
+  border-radius: 12px;
+}
+
+.admin-preview {
+  width: 200px;
+  height: 112px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.admin-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.admin-details input {
+  padding: 0.5rem;
+  background: #222;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.admin-details button {
+  align-self: flex-start;
+  padding: 0.5rem 1rem;
+  background: #dc2626;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.admin-details button:hover {
+  background: #b91c1c;
+}
+
+@media (max-width: 1200px) {
+  .gallery-container {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 0.75rem 1rem;
+    gap: 1rem;
+  }
+  
+  .gallery-container {
+    padding: 1rem;
+  }
+  
+  .video-info {
+    opacity: 1;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  }
+  
+  .video-description {
+    font-size: 0.85rem;
+  }
+  
+  .copyright {
+    padding: 1.5rem 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .container {
+    padding: 2rem 1rem;
+  }
+  
+  .upload-form {
+    flex-direction: column;
+  }
+  
+  .admin-item {
+    flex-direction: column;
+  }
+  
+  .admin-preview {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav a {
+    font-size: 0.85rem;
+  }
+  
+  .gallery-container {
+    padding: 0.5rem;
+  }
+}
