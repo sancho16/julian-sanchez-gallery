@@ -10,3 +10,5 @@ videos/*.mp4
 videos/*.webm
 !videos/.gitkeep
 videos/metadata.json
+mobile/.expo/
+mobile/node_modules/

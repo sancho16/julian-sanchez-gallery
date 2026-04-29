@@ -5,33 +5,27 @@ import Gallery from './Gallery';
 import Admin from './Admin';
 import './styles.css';
 
-function App() {
-  const location = useLocation();
-  const isGallery = location.pathname === '/';
-  
+function Nav() {
+  const loc = useLocation();
   return (
-    <>
-      <nav className="nav">
-        <Link to="/">Gallery</Link>
-        <Link to="/admin">Admin</Link>
-      </nav>
-      <Routes>
-        <Route path="/" element={<Gallery />} />
-        <Route path="/admin" element={
-          <>
-            <Admin />
-            <footer className="copyright">
-              © {new Date().getFullYear()} Julian Sanchez LLC. All rights reserved.
-            </footer>
-          </>
-        } />
-      </Routes>
-    </>
+    <nav className="nav">
+      <span className="nav-brand">Julian Sanchez</span>
+      <Link to="/" style={{ color: loc.pathname === '/' ? '#fff' : undefined }}>Gallery</Link>
+      <Link to="/admin" style={{ color: loc.pathname === '/admin' ? '#fff' : undefined }}>Admin</Link>
+    </nav>
   );
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-);
+function App() {
+  return (
+    <BrowserRouter>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Gallery />} />
+        <Route path="/admin" element={<Admin />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
