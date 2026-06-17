@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Platform, StatusBar, Image, S
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useSettings, THEMES, THEME_LIST } from '../context/SettingsContext';
+import { typography } from '../utils/typography';
 
 export default function SettingsScreen({ navigation }) {
   const { theme, setThemeTo } = useSettings();
@@ -106,16 +107,12 @@ const s = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   backBtn:  { padding: 4, width: 32 },
-  title:    { flex: 1, textAlign: 'center', fontSize: 17, fontWeight: '600' },
+  title:    { flex: 1, textAlign: 'center', ...typography.h3 },
   logoWrap: { alignItems: 'center', paddingVertical: 28 },
   logo:     { width: 80, height: 80, marginBottom: 12 },
-  appName:  { fontSize: 24, fontWeight: '800', letterSpacing: 4, textTransform: 'uppercase' },
-  appSub:   { fontSize: 12, letterSpacing: 0.5, marginTop: 4 },
-  sectionLabel: {
-    fontSize: 11, fontWeight: '600',
-    textTransform: 'uppercase', letterSpacing: 0.8,
-    marginTop: 20, marginBottom: 8, marginHorizontal: 20,
-  },
+  appName:  { ...typography.brand, fontSize: 24, marginBottom: 4 },
+  appSub:   { ...typography.small, letterSpacing: 0.5, marginTop: 4 },
+  sectionLabel: { ...typography.label, marginTop: 20, marginBottom: 8, marginHorizontal: 20 },
   themeGrid: {
     flexDirection: 'row', flexWrap: 'wrap',
     paddingHorizontal: 16, gap: 10,
@@ -126,8 +123,8 @@ const s = StyleSheet.create({
     gap: 4,
   },
   themeEmoji: { fontSize: 22, marginBottom: 4 },
-  themeLabel: { fontSize: 14, fontWeight: '700' },
-  themeDesc:  { fontSize: 11 },
+  themeLabel: { fontFamily: 'Dronien', fontSize: 14, fontWeight: '700' },
+  themeDesc:  { fontFamily: 'Dronien', fontSize: 11 },
   themeCheck: {
     position: 'absolute', top: 10, right: 10,
     width: 18, height: 18, borderRadius: 9,
@@ -135,9 +132,10 @@ const s = StyleSheet.create({
   },
   card: { marginHorizontal: 16, borderRadius: 16, borderWidth: 1, overflow: 'hidden' },
   row: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 14 },
-  rowKey: { fontSize: 14 },
-  rowVal: { fontSize: 14, fontWeight: '500' },
+  rowKey: { fontFamily: 'Dronien', fontSize: 14 },
+  rowVal: { fontFamily: 'Dronien', fontSize: 14, fontWeight: '500' },
   footer: {
+    fontFamily: 'Dronien',
     textAlign: 'center', fontSize: 11,
     letterSpacing: 0.5, textTransform: 'uppercase',
     paddingVertical: 24,

@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Animated, Platform, StatusBar
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useSettings, THEMES } from '../context/SettingsContext';
+import { typography } from '../utils/typography';
 
 function AppCard({ icon, title, subtitle, color, delay, onPress, T }) {
   const scale      = useRef(new Animated.Value(0.88)).current;
@@ -130,8 +131,8 @@ const s = StyleSheet.create({
     alignItems: 'flex-start',
   },
   logo:    { width: 56, height: 56, marginBottom: 12 },
-  brand:   { fontSize: 32, fontWeight: '800', letterSpacing: 3, marginBottom: 6, textTransform: 'uppercase' },
-  tagline: { fontSize: 14, letterSpacing: 0.5, textTransform: 'uppercase' },
+  brand:   { ...typography.brand, marginBottom: 6 },
+  tagline: { ...typography.label, marginTop: 2 },
   cards:   { flex: 1, paddingHorizontal: 20, gap: 16, justifyContent: 'center' },
   card: {
     flexDirection: 'row', alignItems: 'center',
@@ -142,8 +143,8 @@ const s = StyleSheet.create({
     borderWidth: 1, alignItems: 'center', justifyContent: 'center',
   },
   cardText:    { flex: 1 },
-  cardTitle:   { fontSize: 18, fontWeight: '600', letterSpacing: -0.2, marginBottom: 4 },
-  cardSubtitle:{ fontSize: 13 },
+  cardTitle:   { ...typography.h3, letterSpacing: -0.2, marginBottom: 4 },
+  cardSubtitle:{ ...typography.small },
   arrow:       { width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   glowDot:     { position: 'absolute', top: 14, right: 14, width: 6, height: 6, borderRadius: 3, opacity: 0.7 },
   footer:      { paddingBottom: Platform.OS === 'ios' ? 40 : 24, alignItems: 'center' },

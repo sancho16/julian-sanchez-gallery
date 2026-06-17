@@ -17,6 +17,12 @@ export function useSettings() {
   return useContext(SettingsContext);
 }
 
+export const FONT = {
+  regular: 'Dronien',
+  // fallback for system text that won't use the custom font
+  system: undefined,
+};
+
 export const THEME_LIST = [
   { id: 'dark',   label: 'Dark',         icon: '🌙', desc: 'Classic dark mode' },
   { id: 'light',  label: 'Light',        icon: '☀️', desc: 'Clean and bright' },

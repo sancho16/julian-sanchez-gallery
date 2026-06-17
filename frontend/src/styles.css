@@ -5,7 +5,17 @@
   box-sizing: border-box;
 }
 
+/* ─── Dronien Font ──────────────────────────────────────────── */
+@font-face {
+  font-family: 'Dronien';
+  src: url('/fonts/Dronien-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
+  --font: 'Dronien', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
   --accent: #0ea5e9;
   --accent-glow: rgba(14, 165, 233, 0.5);
   --bg: #000;
@@ -21,7 +31,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  font-family: var(--font);
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
