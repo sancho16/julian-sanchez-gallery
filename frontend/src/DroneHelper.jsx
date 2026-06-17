@@ -40,6 +40,21 @@ function assess(w, elev, isLicensed) {
   return { safe, issues, tips };
 }
 
+// ── Copy coordinates button ───────────────────────────────────
+function CopyCoords({ coords }) {
+  const [copied, setCopied] = React.useState(false);
+  const handleCopy = () => {
+    navigator.clipboard.writeText(`${coords.lat.toFixed(6)}, ${coords.lon.toFixed(6)}`);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+  return (
+    <button className={`dh-copy-btn ${copied ? 'dh-copy-done' : ''}`} onClick={handleCopy} title="Copy coordinates">
+      {copied ? '✓' : '⧉'}
+    </button>
+  );
+}
+
 // ── Match GPS reverse geocode result to our CR location data ──
 function matchGPSToLocations(address) {
   // Nominatim returns: county = canton, state_district = province-ish, suburb/village = district
@@ -131,11 +146,12 @@ function LocationHeader({ province, canton, district, isGPS, coords, visible }) 
         </div>
       </div>
 
-      {/* Right: coords badge */}
+      {/* Right: coords + copy button */}
       {coords && (
         <div className="dh-loc-coords">
           <span>{coords.lat.toFixed(4)}°N</span>
           <span>{Math.abs(coords.lon).toFixed(4)}°W</span>
+          <CopyCoords coords={coords} />
         </div>
       )}
     </div>
@@ -323,17 +339,27 @@ export default function DroneHelper() {
           </button>
           <div className="dh-or">— or select manually —</div>
 
-          <PickerRow label="Province" options={PROVINCES} selected={province} onSelect={handleProvince} />
-          {province && (
-            <PickerRow label="Canton" options={province.cantons} selected={canton} onSelect={handleCanton} />
+          {!isGPS && (
+            <>
+              <PickerRow label="Province" options={PROVINCES} selected={province} onSelect={handleProvince} />
+              {province && (
+                <PickerRow label="Canton" options={province.cantons} selected={canton} onSelect={handleCanton} />
+              )}
+              {canton && (
+                <PickerRow
+                  label="District"
+                  options={canton.districts.map(d => ({ id: d, name: d }))}
+                  selected={district ? { id: district, name: district } : null}
+                  onSelect={handleDistrict}
+                />
+              )}
+            </>
           )}
-          {canton && (
-            <PickerRow
-              label="District"
-              options={canton.districts.map(d => ({ id: d, name: d }))}
-              selected={district ? { id: district, name: district } : null}
-              onSelect={handleDistrict}
-            />
+
+          {isGPS && (
+            <button className="dh-gps-reset" onClick={() => { setIsGPS(false); setProvince(null); setCanton(null); setDistrict(null); setCoords(null); setWeather(null); }}>
+              ✕ Clear GPS — select manually instead
+            </button>
           )}
         </section>
 

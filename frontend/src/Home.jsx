@@ -1,5 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+
+function useTheme() {
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+  return [theme, () => setTheme(t => t === 'dark' ? 'light' : 'dark')];
+}
 
 function AppCard({ to, icon, title, subtitle, color, delay }) {
   const ref = useRef(null);
@@ -33,6 +42,7 @@ function AppCard({ to, icon, title, subtitle, color, delay }) {
 }
 
 export default function Home() {
+  const [theme, toggleTheme] = useTheme();
   const headRef = useRef(null);
   useEffect(() => {
     const el = headRef.current;
@@ -71,7 +81,14 @@ export default function Home() {
           <p className="home-tagline">Select an experience</p>
         </div>
 
-        {/* Cards */}
+        {/* Settings gear + theme toggle */}
+      <div className="home-controls">
+        <button className="home-theme-btn" onClick={toggleTheme} title="Toggle theme">
+          {theme === 'dark' ? '☀' : '🌙'}
+        </button>
+      </div>
+
+      {/* Cards */}
         <div className="home-cards">
           <AppCard
             to="/gallery"

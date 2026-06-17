@@ -1221,3 +1221,86 @@ body {
   .wh-stats-bar { flex-wrap: wrap; gap: 0.75rem; padding: 0.75rem; }
   .wh-stat { min-width: 60px; }
 }
+
+.dh-gps-reset {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px dashed #333;
+  background: transparent;
+  color: #555;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 0.25rem;
+}
+.dh-gps-reset:hover { border-color: #ef4444; color: #ef4444; }
+
+/* ── Copy button ── */
+.dh-copy-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 7px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: #666; font-size: 0.8rem;
+  cursor: pointer; transition: all 0.2s;
+  margin-top: 2px;
+}
+.dh-copy-btn:hover { border-color: #0ea5e9; color: #0ea5e9; }
+.dh-copy-done { border-color: #10b981 !important; color: #10b981 !important; background: #10b98112 !important; }
+
+/* ── Light theme overrides ── */
+:root[data-theme="light"] {
+  --bg:      #f0f4f8;
+  --surface: #e2e8f0;
+  --border:  rgba(0,0,0,0.08);
+  --text:    #0f172a;
+  --text-muted: #64748b;
+}
+:root[data-theme="light"] body { background: #f0f4f8; color: #0f172a; }
+:root[data-theme="light"] .nav { background: rgba(240,244,248,0.85); border-bottom-color: rgba(0,0,0,0.08); }
+:root[data-theme="light"] .nav-brand,
+:root[data-theme="light"] .nav-link { color: #64748b; }
+:root[data-theme="light"] .nav-link:hover { color: #0f172a; }
+:root[data-theme="light"] .dh-wrapper { background: #f0f4f8; }
+:root[data-theme="light"] .dh-card { background: rgba(255,255,255,0.8); border-color: rgba(0,0,0,0.08); }
+:root[data-theme="light"] .dh-card-label { color: #94a3b8; }
+:root[data-theme="light"] .dh-section-title { color: #0f172a; }
+:root[data-theme="light"] .dh-picker-label { color: #94a3b8; }
+:root[data-theme="light"] .dh-pill { background: rgba(255,255,255,0.9); border-color: rgba(0,0,0,0.1); color: #64748b; }
+:root[data-theme="light"] .dh-reg-table { background: rgba(255,255,255,0.8); }
+:root[data-theme="light"] .dh-reg-key { color: #64748b; }
+:root[data-theme="light"] .dh-reg-val { color: #0f172a; }
+:root[data-theme="light"] .dh-loc-header { background: rgba(255,255,255,0.7); border-color: rgba(14,165,233,0.2); }
+:root[data-theme="light"] .dh-loc-crumb-last { color: #0f172a; }
+:root[data-theme="light"] .dh-loc-type { color: #94a3b8; }
+:root[data-theme="light"] .dh-loc-coords span { color: #94a3b8; }
+:root[data-theme="light"] .dh-gps-btn { background: rgba(255,255,255,0.8); border-color: rgba(0,0,0,0.1); color: #64748b; }
+:root[data-theme="light"] .home-card { background: rgba(255,255,255,0.6); }
+:root[data-theme="light"] .home-title { color: #0f172a; }
+:root[data-theme="light"] .home-tagline { color: #94a3b8; }
+:root[data-theme="light"] .copyright { color: #94a3b8; }
+
+/* ── Home controls (theme toggle gear) ── */
+.home-controls {
+  position: absolute;
+  top: calc(var(--nav-h) + 1rem);
+  right: 1.5rem;
+  z-index: 10;
+}
+.home-theme-btn {
+  width: 40px; height: 40px; border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px);
+  font-size: 1.1rem; cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex; align-items: center; justify-content: center;
+}
+.home-theme-btn:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.25);
+  transform: rotate(20deg);
+}
