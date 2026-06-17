@@ -1304,3 +1304,78 @@ body {
   border-color: rgba(255,255,255,0.25);
   transform: rotate(20deg);
 }
+
+/* ── Nav logo ── */
+.nav-brand { display: flex; align-items: center; gap: 8px; }
+.nav-logo   { width: 24px; height: 24px; object-fit: contain; }
+
+/* ── Home logo ── */
+.home-logo { width: 64px; height: 64px; object-fit: contain; margin-bottom: 12px; }
+
+/* ── Loc actions row ── */
+.dh-loc-actions { display: flex; gap: 5px; margin-top: 4px; }
+.dh-maps-btn    { font-size: 0.75rem !important; }
+
+/* ── Alien theme ── */
+:root[data-theme="alien"] {
+  --bg:      #000a00;
+  --surface: rgba(57,255,20,0.05);
+  --border:  rgba(57,255,20,0.15);
+  --text:    #39ff14;
+  --text-muted: #1a8c00;
+  --accent:  #39ff14;
+}
+:root[data-theme="alien"] body         { background: #000a00; color: #39ff14; }
+:root[data-theme="alien"] .nav         { background: rgba(0,10,0,0.85); border-bottom-color: rgba(57,255,20,0.15); }
+:root[data-theme="alien"] .nav-brand,
+:root[data-theme="alien"] .nav-link    { color: #1a8c00; }
+:root[data-theme="alien"] .nav-link:hover,
+:root[data-theme="alien"] .nav-link-active { color: #39ff14 !important; border-bottom-color: #39ff14; }
+:root[data-theme="alien"] .dh-wrapper  { background: #000a00; }
+:root[data-theme="alien"] .dh-card     { background: rgba(57,255,20,0.06); border-color: rgba(57,255,20,0.2); }
+:root[data-theme="alien"] .dh-card-value { text-shadow: 0 0 10px currentColor; }
+:root[data-theme="alien"] .dh-pill     { background: rgba(57,255,20,0.05); border-color: rgba(57,255,20,0.15); color: #1a8c00; }
+:root[data-theme="alien"] .dh-pill-active { border-color: #39ff14; background: rgba(57,255,20,0.12); color: #39ff14; }
+:root[data-theme="alien"] .dh-loc-header { background: rgba(57,255,20,0.06); border-color: rgba(57,255,20,0.2); }
+:root[data-theme="alien"] .dh-loc-header::before { background: linear-gradient(90deg, transparent, #39ff1480, transparent); }
+:root[data-theme="alien"] .dh-section-title { color: #39ff14; }
+:root[data-theme="alien"] .dh-loc-crumb-last { color: #39ff14; }
+:root[data-theme="alien"] .dh-reg-table { background: rgba(57,255,20,0.04); }
+:root[data-theme="alien"] .dh-reg-val { color: #39ff14; }
+:root[data-theme="alien"] .dh-gps-btn { background: rgba(57,255,20,0.04); border-color: rgba(57,255,20,0.15); color: #1a8c00; }
+:root[data-theme="alien"] .home-title  { color: #39ff14; text-shadow: 0 0 20px #39ff1450; }
+:root[data-theme="alien"] .home-card   { background: rgba(57,255,20,0.05); border-color: rgba(57,255,20,0.15) !important; }
+:root[data-theme="alien"] .home-card-title { color: #39ff14; }
+:root[data-theme="alien"] .copyright   { color: #1a8c00; }
+
+/* ── Pilot (amber HUD) theme ── */
+:root[data-theme="pilot"] {
+  --bg:      #0a0800;
+  --surface: rgba(251,191,36,0.05);
+  --border:  rgba(251,191,36,0.15);
+  --text:    #fbbf24;
+  --text-muted: #92600a;
+  --accent:  #fbbf24;
+}
+:root[data-theme="pilot"] body         { background: #0a0800; color: #fbbf24; }
+:root[data-theme="pilot"] .nav         { background: rgba(10,8,0,0.85); border-bottom-color: rgba(251,191,36,0.15); }
+:root[data-theme="pilot"] .nav-brand,
+:root[data-theme="pilot"] .nav-link    { color: #92600a; }
+:root[data-theme="pilot"] .nav-link:hover,
+:root[data-theme="pilot"] .nav-link-active { color: #fbbf24 !important; border-bottom-color: #fbbf24; }
+:root[data-theme="pilot"] .dh-wrapper  { background: #0a0800; }
+:root[data-theme="pilot"] .dh-card     { background: rgba(251,191,36,0.06); border-color: rgba(251,191,36,0.2); }
+:root[data-theme="pilot"] .dh-card-value { text-shadow: 0 0 10px currentColor; }
+:root[data-theme="pilot"] .dh-pill     { background: rgba(251,191,36,0.05); border-color: rgba(251,191,36,0.15); color: #92600a; }
+:root[data-theme="pilot"] .dh-pill-active { border-color: #fbbf24; background: rgba(251,191,36,0.12); color: #fbbf24; }
+:root[data-theme="pilot"] .dh-loc-header { background: rgba(251,191,36,0.06); border-color: rgba(251,191,36,0.2); }
+:root[data-theme="pilot"] .dh-loc-header::before { background: linear-gradient(90deg, transparent, #fbbf2480, transparent); }
+:root[data-theme="pilot"] .dh-section-title { color: #fbbf24; }
+:root[data-theme="pilot"] .dh-loc-crumb-last { color: #fbbf24; }
+:root[data-theme="pilot"] .dh-reg-table { background: rgba(251,191,36,0.04); }
+:root[data-theme="pilot"] .dh-reg-val  { color: #fbbf24; }
+:root[data-theme="pilot"] .dh-gps-btn  { background: rgba(251,191,36,0.04); border-color: rgba(251,191,36,0.15); color: #92600a; }
+:root[data-theme="pilot"] .home-title  { color: #fbbf24; text-shadow: 0 0 20px #fbbf2450; }
+:root[data-theme="pilot"] .home-card   { background: rgba(251,191,36,0.05); border-color: rgba(251,191,36,0.15) !important; }
+:root[data-theme="pilot"] .home-card-title { color: #fbbf24; }
+:root[data-theme="pilot"] .copyright   { color: #92600a; }

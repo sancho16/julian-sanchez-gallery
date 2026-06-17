@@ -1,8 +1,5 @@
-import React, { useRef, useEffect } from 'react';
-import {
-  View, Text, StyleSheet, TouchableOpacity,
-  Animated, Platform, StatusBar,
-} from 'react-native';
+import { useRef, useEffect } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Animated, Platform, StatusBar, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useSettings, THEMES } from '../context/SettingsContext';
@@ -89,9 +86,15 @@ export default function HomeScreen({ navigation }) {
         </TouchableOpacity>
       </Animated.View>
 
-      {/* Header */}
+      {/* Header with logo */}
       <Animated.View style={[s.header, { opacity: titleOpacity, transform: [{ translateY: titleY }] }]}>
-        <Text style={[s.brand, { color: T.text }]}>Julian Sanchez</Text>
+        <Image
+          source={require('../assets/logo.png')}
+          style={s.logo}
+          resizeMode="contain"
+          onError={() => {}}
+        />
+        <Text style={[s.brand, { color: T.accent || T.text }]}>DRONIEN</Text>
         <Text style={[s.tagline, { color: T.textMuted }]}>Select an experience</Text>
       </Animated.View>
 
@@ -124,8 +127,10 @@ const s = StyleSheet.create({
   header: {
     paddingTop: Platform.OS === 'ios' ? 80 : 60,
     paddingHorizontal: 28, paddingBottom: 40,
+    alignItems: 'flex-start',
   },
-  brand:   { fontSize: 32, fontWeight: '700', letterSpacing: -0.5, marginBottom: 6 },
+  logo:    { width: 56, height: 56, marginBottom: 12 },
+  brand:   { fontSize: 32, fontWeight: '800', letterSpacing: 3, marginBottom: 6, textTransform: 'uppercase' },
   tagline: { fontSize: 14, letterSpacing: 0.5, textTransform: 'uppercase' },
   cards:   { flex: 1, paddingHorizontal: 20, gap: 16, justifyContent: 'center' },
   card: {

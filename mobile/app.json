@@ -1,45 +1,37 @@
 {
   "expo": {
-    "name": "Julian Sanchez",
-    "slug": "julian-sanchez-gallery",
+    "name": "DRONIEN",
+    "slug": "dronien",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "dark",
+    "icon": "./assets/logo.png",
+    "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.juliansanchez.gallery"
+      "bundleIdentifier": "com.juliansanchez.dronien"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logo.png",
         "backgroundColor": "#000000"
       },
-      "package": "com.juliansanchez.gallery"
+      "package": "com.juliansanchez.dronien"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/logo.png"
     },
     "plugins": [
-      [
-        "expo-av",
-        {
-          "microphonePermission": false
-        }
-      ],
+      ["expo-av", { "microphonePermission": false }],
       "expo-screen-orientation",
-      [
-        "expo-location",
-        {
-          "locationAlwaysAndWhenInUsePermission": "Allow Drone Helper to use your location for flight conditions.",
-          "locationWhenInUsePermission": "Allow Drone Helper to use your location for flight conditions."
-        }
-      ]
+      ["expo-location", {
+        "locationAlwaysAndWhenInUsePermission": "Allow DRONIEN to use your location for flight conditions.",
+        "locationWhenInUsePermission": "Allow DRONIEN to use your location for flight conditions."
+      }]
     ]
   }
 }

@@ -10,11 +10,13 @@ import './styles.css';
 function Nav() {
   const loc = useLocation();
   const active = path => loc.pathname === path ? 'nav-link-active' : '';
-  const isHome = loc.pathname === '/';
 
   return (
-    <nav className={`nav ${isHome ? 'nav-home' : ''}`}>
-      <Link to="/" className="nav-brand">Julian Sanchez</Link>
+    <nav className={`nav`}>
+      <Link to="/" className="nav-brand">
+        <img src="/logo.png" alt="DRONIEN" className="nav-logo" />
+        DRONIEN
+      </Link>
       <div className="nav-links">
         <Link to="/gallery" className={`nav-link ${active('/gallery')}`}>Gallery</Link>
         <Link to="/drone"   className={`nav-link ${active('/drone')}`}>Drone CR</Link>

@@ -40,7 +40,20 @@ function assess(w, elev, isLicensed) {
   return { safe, issues, tips };
 }
 
-// ── Copy coordinates button ───────────────────────────────────
+// ── Open in Maps button ───────────────────────────────────────
+function OpenInMaps({ coords, label }) {
+  const handleOpen = () => {
+    const name = encodeURIComponent(label || 'Location');
+    // Try Apple Maps first, fall back to Google Maps
+    const url = `https://maps.google.com/?q=${coords.lat},${coords.lon}`;
+    window.open(url, '_blank');
+  };
+  return (
+    <button className="dh-copy-btn dh-maps-btn" onClick={handleOpen} title="Open in Maps">
+      🗺
+    </button>
+  );
+}
 function CopyCoords({ coords }) {
   const [copied, setCopied] = React.useState(false);
   const handleCopy = () => {
@@ -151,7 +164,10 @@ function LocationHeader({ province, canton, district, isGPS, coords, visible }) 
         <div className="dh-loc-coords">
           <span>{coords.lat.toFixed(4)}°N</span>
           <span>{Math.abs(coords.lon).toFixed(4)}°W</span>
-          <CopyCoords coords={coords} />
+          <div className="dh-loc-actions">
+            <CopyCoords coords={coords} />
+            <OpenInMaps coords={coords} label={[province?.name, canton?.name].filter(Boolean).join(', ')} />
+          </div>
         </div>
       )}
     </div>

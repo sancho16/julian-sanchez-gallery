@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity, ScrollView,
-  Animated, Platform, StatusBar, ActivityIndicator, Alert, Clipboard,
+  Animated, Platform, StatusBar, ActivityIndicator, Alert, Clipboard, Linking,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
@@ -113,16 +113,31 @@ function LocationHeader({ province, canton, district, isGPS, coords, T, onCopy }
             ) : null}
           </View>
 
-          {/* Coords + copy */}
+          {/* Coords + copy + open in maps */}
           {coords && (
             <View style={lh.right}>
               <Text style={[lh.coordLine, { color: T.textMuted }]}>{coords.lat.toFixed(4)}°N</Text>
               <Text style={[lh.coordLine, { color: T.textMuted }]}>{Math.abs(coords.lon).toFixed(4)}°W</Text>
-              <TouchableOpacity style={[lh.copyBtn, { backgroundColor: copied ? '#10b98120' : T.surface,
-                borderColor: copied ? '#10b98150' : T.border }]} onPress={handleCopy}>
-                <Ionicons name={copied ? 'checkmark' : 'copy-outline'} size={13}
-                  color={copied ? '#10b981' : T.textMuted} />
-              </TouchableOpacity>
+              <View style={lh.actions}>
+                <TouchableOpacity
+                  style={[lh.actionBtn, { backgroundColor: copied ? '#10b98120' : T.surface, borderColor: copied ? '#10b98150' : T.border }]}
+                  onPress={() => { Clipboard.setString(`${coords.lat.toFixed(6)}, ${coords.lon.toFixed(6)}`); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
+                >
+                  <Ionicons name={copied ? 'checkmark' : 'copy-outline'} size={13} color={copied ? '#10b981' : T.textMuted} />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[lh.actionBtn, { backgroundColor: T.surface, borderColor: T.border }]}
+                  onPress={() => {
+                    const label = [province?.name, canton?.name].filter(Boolean).join(', ') || 'Location';
+                    const url = Platform.OS === 'ios'
+                      ? `maps:?q=${label}&ll=${coords.lat},${coords.lon}`
+                      : `geo:${coords.lat},${coords.lon}?q=${coords.lat},${coords.lon}(${label})`;
+                    Linking.openURL(url).catch(() => Linking.openURL(`https://maps.google.com/?q=${coords.lat},${coords.lon}`));
+                  }}
+                >
+                  <Ionicons name="map-outline" size={13} color={T.textMuted} />
+                </TouchableOpacity>
+              </View>
             </View>
           )}
         </View>
@@ -459,6 +474,11 @@ const lh = StyleSheet.create({
   crumbLast:{ fontSize: 15, fontWeight: '700' },
   right:    { alignItems: 'flex-end', gap: 3, flexShrink: 0 },
   coordLine:{ fontSize: 11, fontFamily: Platform.OS === 'ios' ? 'Menlo' : 'monospace' },
+  actions:  { flexDirection: 'row', gap: 5, marginTop: 4 },
+  actionBtn:{
+    width: 28, height: 28, borderRadius: 8,
+    alignItems: 'center', justifyContent: 'center', borderWidth: 1,
+  },
   copyBtn:  {
     marginTop: 4, width: 28, height: 28, borderRadius: 8,
     alignItems: 'center', justifyContent: 'center', borderWidth: 1,

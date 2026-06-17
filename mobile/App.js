@@ -11,8 +11,7 @@ import SettingsScreen    from './screens/SettingsScreen';
 const Stack = createNativeStackNavigator();
 
 function AppNavigator() {
-  const { theme } = useSettings();
-  return (
+  const { theme } = useSettings();  return (
     <>
       <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
       <NavigationContainer>

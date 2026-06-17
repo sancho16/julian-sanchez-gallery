@@ -77,7 +77,8 @@ export default function Home() {
       <div className="home-content">
         {/* Header */}
         <div className="home-header" ref={headRef}>
-          <h1 className="home-title">Julian Sanchez</h1>
+          <img src="/logo.png" alt="DRONIEN" className="home-logo" />
+          <h1 className="home-title">DRONIEN</h1>
           <p className="home-tagline">Select an experience</p>
         </div>
 
