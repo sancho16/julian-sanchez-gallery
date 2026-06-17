@@ -777,3 +777,146 @@ body {
   .dh-grid { grid-template-columns: repeat(2, 1fr); }
   .dh-header { flex-direction: column; align-items: flex-start; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   LOCATION HEADER CARD
+════════════════════════════════════════════════════════════════ */
+.dh-loc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.4rem;
+  margin-bottom: 1.75rem;
+  border-radius: 16px;
+  border: 1px solid rgba(14, 165, 233, 0.25);
+  background: linear-gradient(135deg, rgba(14,165,233,0.07) 0%, rgba(14,165,233,0.02) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated shimmer line at top */
+.dh-loc-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(14,165,233,0.8), transparent);
+  animation: locShimmer 2.5s ease-in-out infinite;
+}
+@keyframes locShimmer {
+  0%   { left: -60%; }
+  100% { left: 160%; }
+}
+
+.dh-loc-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.dh-loc-pin {
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+.dh-loc-pin:hover { transform: scale(1.1); }
+
+.dh-loc-pin-gps {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #10b981;
+  animation: gpsPulse 2s ease-in-out infinite;
+}
+@keyframes gpsPulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+  50%     { box-shadow: 0 0 0 6px rgba(16,185,129,0.15); }
+}
+
+.dh-loc-pin-manual {
+  background: rgba(14, 165, 233, 0.12);
+  border: 1px solid rgba(14, 165, 233, 0.25);
+}
+
+.dh-loc-crumbs { flex: 1; min-width: 0; }
+
+.dh-loc-type {
+  font-size: 0.7rem;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.dh-loc-path {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+  row-gap: 2px;
+}
+
+.dh-loc-crumb-wrap {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.dh-loc-sep {
+  color: #444;
+  font-size: 0.85rem;
+  padding: 0 1px;
+}
+
+.dh-loc-crumb {
+  font-size: 0.9rem;
+  color: #888;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.dh-loc-crumb-last {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.dh-loc-coords {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.dh-loc-coords span {
+  font-size: 0.75rem;
+  color: #444;
+  font-variant-numeric: tabular-nums;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+/* GPS button states */
+.dh-gps-loading span:first-child {
+  display: inline-block;
+  animation: spin 0.7s linear infinite;
+}
+.dh-gps-active {
+  border-color: #10b98150 !important;
+  background: #10b98108 !important;
+  color: #10b981 !important;
+}
+
+@media (max-width: 480px) {
+  .dh-loc-header { padding: 0.9rem 1rem; }
+  .dh-loc-crumb  { font-size: 0.8rem; }
+  .dh-loc-crumb-last { font-size: 0.9rem; }
+  .dh-loc-coords { display: none; }
+}
