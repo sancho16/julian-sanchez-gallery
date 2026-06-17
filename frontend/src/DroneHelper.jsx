@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { PROVINCES } from './costaRicaLocations';
+import WeatherHero from './WeatherHero';
 
 const OPEN_METEO  = 'https://api.open-meteo.com/v1/forecast';
 const ELEV_API    = 'https://api.open-meteo.com/v1/elevation';
@@ -350,35 +351,13 @@ export default function DroneHelper() {
 
             {assessment && <SafetyBanner safe={assessment.safe} issues={assessment.issues} />}
 
-            <section className="dh-section">
-              <h2 className="dh-section-title">💨 Wind</h2>
-              <div className="dh-grid">
-                <InfoCard icon="💨" label="Speed"     value={weather.windspeed_10m?.toFixed(1)}                           unit="m/s" color={wind?.color} sub={wind?.label} />
-                <InfoCard icon="⬆" label="Gusts"     value={(weather.windgusts_10m ?? weather.windspeed_10m)?.toFixed(1)} unit="m/s" color={windInfo(weather.windgusts_10m ?? 0).color} />
-                <InfoCard icon="🧭" label="Direction" value={weather.winddirection_10m?.toFixed(0)}                        unit="°"   color="#818cf8" />
-              </div>
-            </section>
-
-            <section className="dh-section">
-              <h2 className="dh-section-title">🌡️ Atmosphere</h2>
-              <div className="dh-grid">
-                <InfoCard icon="🌡" label="Temp"       value={weather.temperature_2m?.toFixed(1)}              unit="°C" color="#f97316" />
-                <InfoCard icon="💧" label="Humidity"   value={weather.relative_humidity_2m?.toFixed(0)}        unit="%"  color="#0ea5e9" />
-                <InfoCard icon="🌧" label="Rain"       value={weather.precipitation?.toFixed(1)}               unit="mm" color="#60a5fa" />
-                <InfoCard icon="☁" label="Cloud"      value={weather.cloudcover?.toFixed(0)}                  unit="%"  color="#94a3b8" />
-                <InfoCard icon="👁" label="Visibility" value={((weather.visibility ?? 10000)/1000).toFixed(1)} unit="km" color="#a78bfa" />
-              </div>
-            </section>
-
-            <section className="dh-section">
-              <h2 className="dh-section-title">⛰️ Terrain</h2>
-              <div className="dh-grid">
-                <InfoCard icon="📏" label="Elevation"    value={elevation?.toFixed(0)} unit="m" color="#10b981"
-                  sub={elevation > 2000 ? 'Mountain — reduced lift' : elevation > 1000 ? 'Highland' : 'Lowland'} />
-                <InfoCard icon="🔝" label="Max Altitude" value={rules.maxAlt}          unit="m" color="#f59e0b"
-                  sub={`${isLicensed ? '500' : '400'} ft AGL limit`} />
-              </div>
-            </section>
+            {/* ── Weather Hero ── */}
+            <WeatherHero
+              weather={weather}
+              elevation={elevation}
+              sunTimes={sunTimes}
+              isLicensed={isLicensed}
+            />
 
             {sunTimes?.sunrise && (
               <section className="dh-section">
