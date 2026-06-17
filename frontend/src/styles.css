@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-/* ─── Dronien Font ──────────────────────────────────────────── */
+/* ─── Dronien Font — display only ──────────────────────────── */
 @font-face {
   font-family: 'Dronien';
   src: url('/fonts/Dronien-Regular.ttf') format('truetype');
@@ -15,7 +15,8 @@
 }
 
 :root {
-  --font: 'Dronien', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  --font-brand: 'Dronien', system-ui, sans-serif;
+  --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
   --accent: #0ea5e9;
   --accent-glow: rgba(14, 165, 233, 0.5);
   --bg: #000;
@@ -43,7 +44,7 @@ body {
 .home-title,
 .dh-title,
 .home-card-title {
-  font-family: var(--font);
+  font-family: var(--font-brand);
 }
 
 /* ─── Nav ───────────────────────────────────────────────────── */

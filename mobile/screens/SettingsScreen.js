@@ -110,7 +110,7 @@ const s = StyleSheet.create({
   title:    { flex: 1, textAlign: 'center', fontSize: 17, fontWeight: '600' },
   logoWrap: { alignItems: 'center', paddingVertical: 28 },
   logo:     { width: 80, height: 80, marginBottom: 12 },
-  appName:  { fontFamily: 'Dronien', fontSize: 24, letterSpacing: 4, textTransform: 'uppercase', marginBottom: 4 },
+  appName:  { fontSize: 24, fontWeight: '800', letterSpacing: 4, textTransform: 'uppercase', marginBottom: 4 },
   appSub:   { fontSize: 12, letterSpacing: 0.5, marginTop: 4 },
   sectionLabel: { fontSize: 11, fontWeight: '600', textTransform: 'uppercase', letterSpacing: 0.8, marginTop: 20, marginBottom: 8, marginHorizontal: 20 },
   themeGrid: {

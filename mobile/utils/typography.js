@@ -4,7 +4,7 @@ export const FONT_FAMILY = 'Dronien';
 
 // Only brand/logo text uses Dronien
 export const typography = {
-  brand: { fontFamily: 'Dronien', fontSize: 28, letterSpacing: 4, textTransform: 'uppercase' },
+  brand: { fontSize: 28, fontWeight: '800', letterSpacing: 4, textTransform: 'uppercase' },
   // All other text uses system font (Dronien missing most glyphs)
   h1:    { fontSize: 32, fontWeight: '700' },
   h2:    { fontSize: 22, fontWeight: '600' },

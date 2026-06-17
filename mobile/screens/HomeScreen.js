@@ -131,7 +131,7 @@ const s = StyleSheet.create({
     alignItems: 'flex-start',
   },
   logo:    { width: 56, height: 56, marginBottom: 12 },
-  brand:   { fontFamily: 'Dronien', fontSize: 28, letterSpacing: 4, textTransform: 'uppercase', marginBottom: 6 },
+  brand:   { fontSize: 28, fontWeight: '800', letterSpacing: 4, textTransform: 'uppercase', marginBottom: 6 },
   tagline: { fontSize: 13, letterSpacing: 0.5, textTransform: 'uppercase', marginTop: 2 },
   cards:   { flex: 1, paddingHorizontal: 20, gap: 16, justifyContent: 'center' },
   card: {
