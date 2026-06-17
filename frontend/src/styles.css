@@ -31,11 +31,19 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: var(--font);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Only brand/logo text uses Dronien */
+.nav-brand,
+.home-title,
+.dh-title,
+.home-card-title {
+  font-family: var(--font);
 }
 
 /* ─── Nav ───────────────────────────────────────────────────── */
